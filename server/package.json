@@ -14,6 +14,7 @@
     "dev": "nodemon --exec babel-node src/server.js"
   },
   "devDependencies": {
+    "mongoose": "^5.6.5",
     "nodemon": "^1.19.1"
   }
 }
