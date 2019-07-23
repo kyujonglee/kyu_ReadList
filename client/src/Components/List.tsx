@@ -2,6 +2,11 @@ import React from 'react';
 import { Data, Book } from '../interface';
 import { HOME_PAGE } from '../Query/query';
 import { Query } from 'react-apollo';
+import styled from 'styled-components';
+
+const Container = styled.section`
+    width : 70%;
+`;
 
 const List: React.FC = () => {
   return (
