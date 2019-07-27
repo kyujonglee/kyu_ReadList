@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Container = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns : repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 const SBook = styled.li`
@@ -31,7 +31,15 @@ const SBook = styled.li`
   }
 `;
 
-const List: React.FC = () => {
+interface IPropsList {
+  setSelected: (bookId: string | null) => void;
+}
+
+const List: React.FC<IPropsList> = ({ setSelected }) => {
+  const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
+    const bookId = e.currentTarget.getAttribute('value');
+    setSelected(bookId);
+  };
   return (
     <Container>
       <Query<Data> query={ALL_BOOKS}>
@@ -40,7 +48,9 @@ const List: React.FC = () => {
           if (error) return <span>Error</span>;
           if (data) {
             return data.books.map((book: Book) => (
-              <SBook key={book.id}>{book.name}</SBook>
+              <SBook key={book.id} value={book.id} onClick={onClick}>
+                {book.name}
+              </SBook>
             ));
           }
         }}

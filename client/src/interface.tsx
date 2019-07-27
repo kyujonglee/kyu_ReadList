@@ -30,3 +30,15 @@ export interface BookVariables {
   name: string;
   authorId: string;
 }
+
+export interface IDetail_Book {
+  book: {
+    name: string;
+    genre: string;
+    author: {
+      name: string;
+      age: number;
+      books: [Book];
+    };
+  };
+}

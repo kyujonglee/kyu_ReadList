@@ -20,7 +20,22 @@ export const ALL_AUTHOR = gql`
   }
 `;
 
-export const Detail_Book = gql``;
+export const DETAIL_BOOK = gql`
+  query Detail_book_query($id: String!) {
+    book(id: $id) {
+      name
+      genre
+      author {
+        name
+        age
+        books {
+          name
+          genre
+        }
+      }
+    }
+  }
+`;
 
 export const ADD_BOOK = gql`
   mutation Add_book_mutation(
