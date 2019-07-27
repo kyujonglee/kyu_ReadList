@@ -5,8 +5,10 @@ import Detail from './Detail';
 import Form from './Form';
 
 const Container = styled.div`
-  display: flex;
-  height : 100vh;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  height: 100vh;
+  background-color : #d1d8e0;
 `;
 
 const Column = styled.div`
@@ -14,11 +16,19 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
+export const Title = styled.span`
+  font-size: 48px;
+  font-weight: 600;
+  padding : 20px;
+  opacity : 0.8;
+`;
+
 const Home: React.FC = () => {
   return (
     <>
       <Container>
         <Column>
+          <Title>BookList</Title>
           <List />
           <Form />
         </Column>

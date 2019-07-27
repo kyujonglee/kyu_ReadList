@@ -1,2 +1,3 @@
 # kyu_ReadList
-practice for React, Graphql, Apollo, MongoDB
+
+practice for React, Typescript, Graphql, Apollo, MongoDB
