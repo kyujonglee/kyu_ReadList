@@ -14,6 +14,7 @@ const Container = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  position : relative;
 `;
 
 export const Title = styled.span`

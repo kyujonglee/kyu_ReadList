@@ -14,8 +14,18 @@ export interface Author {
   id: string;
 }
 
+export interface Authors {
+  authors: [Author];
+}
+
 export interface Book {
   id: string;
+  genre: string;
+  name: string;
+  authorId: string;
+}
+
+export interface BookVariables {
   genre: string;
   name: string;
   authorId: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Data, Book } from '../interface';
-import { HOME_PAGE } from '../Query/query';
+import { ALL_BOOKS } from '../Query/query';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -34,7 +34,7 @@ const SBook = styled.li`
 const List: React.FC = () => {
   return (
     <Container>
-      <Query<Data> query={HOME_PAGE}>
+      <Query<Data> query={ALL_BOOKS}>
         {({ loading, error, data }) => {
           if (loading) return <span>Loading</span>;
           if (error) return <span>Error</span>;
