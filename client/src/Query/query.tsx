@@ -50,3 +50,9 @@ export const ADD_BOOK = gql`
     }
   }
 `;
+
+export const DELETE_BOOK = gql`
+  mutation Delete_book_mutation($id: String!){
+    deleteBook(id:$id)
+  }
+`;

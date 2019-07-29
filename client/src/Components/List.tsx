@@ -1,7 +1,7 @@
 import React from 'react';
 import { Data, Book } from '../interface';
-import { ALL_BOOKS } from '../Query/query';
-import { Query } from 'react-apollo';
+import { ALL_BOOKS, DELETE_BOOK } from '../Query/query';
+import { Query, Mutation } from 'react-apollo';
 import styled from 'styled-components';
 
 const Container = styled.ul`
@@ -29,17 +29,36 @@ const SBook = styled.li`
     cursor: pointer;
     border-color: ${props => props.theme.colors.bookHoverColor};
   }
+  position: relative;
+`;
+
+const DeleteButton = styled.span`
+  position: absolute;
+  right: 5px;
+  font-size: 12px;
+  z-index: 10;
+`;
+
+const BookName = styled.span`
+  display: inline-block;
+  width: 80%;
+  text-align: center;
 `;
 
 interface IPropsList {
   setSelected: (bookId: string | null) => void;
 }
 
+interface IPropsMutation {
+  id: string;
+}
+
 const List: React.FC<IPropsList> = ({ setSelected }) => {
-  const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    const bookId = e.currentTarget.getAttribute('value');
+  const onClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const bookId = e.currentTarget.dataset['id'] || null;
     setSelected(bookId);
   };
+
   return (
     <Container>
       <Query<Data> query={ALL_BOOKS}>
@@ -48,9 +67,31 @@ const List: React.FC<IPropsList> = ({ setSelected }) => {
           if (error) return <span>Error</span>;
           if (data) {
             return data.books.map((book: Book) => (
-              <SBook key={book.id} value={book.id} onClick={onClick}>
-                {book.name}
-              </SBook>
+              <Mutation<IPropsMutation> mutation={DELETE_BOOK} key={book.id}>
+                {deleteTodo => {
+                  return (
+                    <SBook value={book.id}>
+                      <BookName onClick={onClick} data-id={book.id}>
+                        {book.name}
+                      </BookName>
+                      <DeleteButton
+                        onClick={ async e => {
+                          await deleteTodo({
+                            variables: { id: book.id },
+                            refetchQueries: [{ query: ALL_BOOKS }]
+                          });
+                          setSelected('');
+                        }}
+                        data-id={book.id}
+                      >
+                        <span role="img" aria-labelledby="delete">
+                          ❌
+                        </span>
+                      </DeleteButton>
+                    </SBook>
+                  );
+                }}
+              </Mutation>
             ));
           }
         }}
@@ -58,5 +99,4 @@ const List: React.FC<IPropsList> = ({ setSelected }) => {
     </Container>
   );
 };
-
 export default List;

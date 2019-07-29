@@ -42,23 +42,12 @@ const resolvers = {
         authorId
       });
       return book.save();
+    },
+    deleteBook: async (_, { id }) => {
+      const { n } = await Book.deleteOne({ _id: id });
+      return n === 1 ? true : false;
     }
   }
 };
 
 export default resolvers;
-
-// export let books = [
-//   { name: '죽음1', genre: '소설', id: '1', authorId: '1' },
-//   { name: '개미', genre: '소설', id: '6', authorId: '1' },
-//   { name: '실전 리액트 프로그래밍', genre: 'Fantasy', id: '2', authorId: '2' },
-//   { name: '역사의 역사', genre: 'SF', id: '3', authorId: '3' },
-//   { name: '유럽 도시 기행', genre: '여행', id: '4', authorId: '3' },
-//   { name: '청춘의 독서', genre: '에세이', id: '5', authorId: '3' }
-// ];
-
-// export let authors = [
-//   { name: '베르나르 베르베르', age: 44, id: '1' },
-//   { name: '이재승', age: 33, id: '2' },
-//   { name: '유시민', age: 50, id: '3' }
-// ];
