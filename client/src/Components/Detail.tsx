@@ -8,34 +8,34 @@ const Container = styled.div`
   background-color: #2bcbba;
   height: 100vh;
   padding: 40px;
-  box-sizing : border-box;
+  box-sizing: border-box;
 `;
 
 const Title = styled.span`
   font-size: 40px;
   color: white;
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  color : white;
+  color: white;
 `;
 
 const Book = styled.span`
-  font-size : 20px;
-  margin : 10px 0px;
+  font-size: 20px;
+  margin: 10px 0px;
 `;
 
 const WriterTitle = styled.span`
-  font-size : 24px;
-  margin-top : 10px;
+  font-size: 24px;
+  margin-top: 10px;
 `;
 
 const BookItem = styled.li`
   margin: 10px 0px;
-  margin-left : 15px;
+  margin-left: 15px;
 `;
 
 export interface IPropsDetail {
@@ -62,8 +62,10 @@ const Detail: React.FC<IPropsDetail> = ({ bookId }) => {
                   <Book>작가 : {author.name}</Book>
                   <WriterTitle>작가의 다른 책들!</WriterTitle>
                   <ul>
-                    {books.map((book,index) => (
-                      <BookItem key={`${book.id} ${index}`}>{book.name}</BookItem>
+                    {books.map((book, index) => (
+                      <BookItem key={`${book.id} ${index}`}>
+                        {book.name}
+                      </BookItem>
                     ))}
                   </ul>
                 </Content>
