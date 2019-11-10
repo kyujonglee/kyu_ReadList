@@ -4,6 +4,7 @@
   "description": "server for readlist",
   "author": "kyujong kyujong93@naver.com",
   "license": "MIT",
+  "main": "server.js",
   "dependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.5.5",
@@ -16,9 +17,9 @@
     "graphql-yoga": "^1.18.1"
   },
   "scripts": {
+    "start": "NODE_ENV=production node build/server.js",
     "dev": "nodemon --exec babel-node src/server.js",
-    "build": "babel src --out-dir build",
-    "start": "NODE_ENV=production node build/server.js"
+    "build": "babel src --out-dir build"
   },
   "devDependencies": {
     "mongoose": "^5.6.5",
