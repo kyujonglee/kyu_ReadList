@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node build/server.js",
-    "dev": "nodemon --exec babel-node src/server.js",
+    "dev": "nodemon --exec babel-node src/server.js delay 2",
     "build": "babel src --out-dir build",
     "postbuild": "copy -R ./src/graphql/schema.graphql ./build/graphql"
   },
