@@ -5,14 +5,20 @@
   "author": "kyujong kyujong93@naver.com",
   "license": "MIT",
   "dependencies": {
+    "@babel/cli": "^7.7.0",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
+    "@babel/runtime": "^7.7.2",
     "dotenv": "^8.2.0",
     "graphql-yoga": "^1.18.1"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/server.js",
+    "build": "babel src --out-dir build",
+    "start": "NODE_ENV=production node build/server.js"
   },
   "devDependencies": {
     "mongoose": "^5.6.5",
